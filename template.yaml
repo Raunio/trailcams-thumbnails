@@ -1,0 +1,27 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  trailcams-thumbnails
+
+  SAM Template for Thumbnails Lambda function
+
+Globals:
+  Function:
+    Timeout: 3
+
+Resources:
+  ThumbnailsFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: create-thumbnail/
+      Handler: app.lambdaHandler
+      Runtime: nodejs14.x
+      Architectures:
+        - x86_64
+Outputs:
+  ThumbnailsFunction:
+    Description: "Thumbnails Lambda Function ARN"
+    Value: !GetAtt ThumbnailsFunction.Arn
+  ThumbnailsFunctionIamRole:
+    Description: "Implicit IAM Role created for Thumbnails function"
+    Value: !GetAtt ThumbnailsFunction.Arn
